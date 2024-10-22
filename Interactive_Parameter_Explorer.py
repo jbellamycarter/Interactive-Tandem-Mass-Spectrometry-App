@@ -508,7 +508,7 @@ with spectrum_tab:
         if reader is not None:
             st.markdown("### Settings")
 
-            st.write("You have selected the ", selected_charge_state, "of", selected_peptide, ", this has a precursor m/z of ", mass.fast_mass2(selected_peptide, ion_type="M", charge=int(selected_charge_state[0]), aa_mass=aa_mass))
+            st.write("You have selected the ", selected_charge_state, "of", selected_peptide, ", this has a precursor m/z of ", mass.fast_mass2(peptide_options[selected_peptide]['sequence'], ion_type="M", charge=int(selected_charge_state[0]), aa_mass=aa_mass))
 
             # Defines available collision energies 
             _available_energies = [0, 5, 10, 15, 20]
@@ -581,7 +581,7 @@ with spectrum_tab:
                     'cent': ["%.2f" % x for x in _peak_centroids]
     }
                 peaks_source = ColumnDataSource(data=peaks_data if _peaks.size > 0 else {'x': [], 'y': [], 'cent': []})
-                r = _spectrum_plot.circle('x', 'y', size=6, source=peaks_source, color='skyblue', alpha=0.3)
+                r = _spectrum_plot.circle('x', 'y', size=6, source=peaks_source, color='skyblue', alpha=0.6)
 
                 # Configures hover tool 
                 hover_tool = HoverTool(tooltips=[
