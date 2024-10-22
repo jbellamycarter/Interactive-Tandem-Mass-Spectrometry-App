@@ -101,8 +101,8 @@ def interpolate_spectra(spectra, target_energies, energies=[0, 5, 10, 15, 20]):
         
         # Interpolate intensity values for each target array
         for target_energy in target_energies:
-            if target_energy < energies[0] or target_energy > energies[-1]:
-                raise ValueError(f"Target energy {target_energy} not in the available range of energies in the spectra.")
+            #if target_energy < energies[0] or target_energy > energies[-1]:
+            #    raise ValueError(f"Target energy {target_energy} not in the available range of energies in the spectra.")
             
             # Performs interpolation to estimate the intensity at target energy 
             interpolated_intensity = np.interp(target_energy, energies, _intensities)
@@ -513,10 +513,10 @@ with spectrum_tab:
             available_energies = [e for e in _available_energies if e in scan_filter_list]
 
             scan_filter = st.number_input(
-                "Select Collision Energy", 
+                "Set Collision Energy", 
                 min_value=0.0,
                 max_value=40.0, 
-                value=10.0, step=0.5,
+                value=0.0, step=0.5,
                 format="%0.1f",
                 help="Filter scans by collision energy, from 0 to 40 V in 0.5 V steps")
 
