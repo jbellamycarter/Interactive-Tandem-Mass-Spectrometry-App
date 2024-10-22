@@ -508,7 +508,7 @@ with spectrum_tab:
         if reader is not None:
             st.markdown("### Settings")
 
-            st.write("You have selected the ", selected_charge_state, "of", selected_peptide, ", this has a monoisotopic precursor m/z of ", f"{mass.fast_mass2(peptide_options[selected_peptide]['sequence'], ion_type="M", charge=int(selected_charge_state[0]), aa_mass=aa_mass:.2f}))
+            st.write("You have selected the ", selected_charge_state, "of", selected_peptide, ", this has a monoisotopic precursor m/z of ", f"{mass.fast_mass2(peptide_options[selected_peptide]['sequence'], ion_type="M", charge=int(selected_charge_state[0]), aa_mass=aa_mass):.2f})
 
             # Defines available collision energies 
             _available_energies = [0, 5, 10, 15, 20]
