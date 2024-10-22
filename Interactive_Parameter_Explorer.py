@@ -340,7 +340,7 @@ peptide_options = {
         "energy_ramps": ["Iso 1"]
     },
     "Substance_P": {
-        "sequence": "RPKPQQFFGLamM",
+        "sequence": "RPKPQQFFGLM",
         "charge_states": ["2+", "3+"],
         "resolutions": ["Turbo", "Normal", "Enhanced", "Zoom"],
         "energy_ramps": ["Iso 1"]
