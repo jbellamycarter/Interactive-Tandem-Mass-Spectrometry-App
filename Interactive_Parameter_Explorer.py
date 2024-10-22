@@ -513,7 +513,7 @@ with spectrum_tab:
                 "Select Collision Energy", 
                 min_value=0.0,
                 max_value=40.0, 
-                value=10, step=0.5, 
+                value=10.0, step=0.5, 
                 help="Filter scans by collision energy, from 0 to 40 V in 0.5 V steps")
 
             if scan_filter in scan_filter_list:
