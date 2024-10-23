@@ -16,7 +16,7 @@ st.write("With structures directly taken from RCSB Protein Data Bank to provide 
 peptide_options = {'Bradykinin':'6F3V', 'Ubiquitin':'1UBQ', 'Custom': ''}
 selected_peptide = st.sidebar.selectbox("Select Peptide", peptide_options.keys())
 
-rcsb_id = st.sidebar.text_input("RCSB PDB ID", value=peptide_options[selected_peptide], max_chars=4)
+rcsb_id = st.sidebar.text_input("RCSB PDB ID", value=peptide_options[selected_peptide], max_chars=4, help="Enter 4-character PDB code.")
 st_molstar_rcsb(rcsb_id, height="500px")
 
 
