@@ -177,78 +177,69 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
 
 def load_predefined_data(peptide, charge_state, resolution, energy_ramp, isolation=None):
     file_map = {
-        ('MRFA', '1+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_enhanced_01.mzML',
-        ('MRFA', '1+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_turbo_01.mzML',
-        ('MRFA', '1+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_zoom_01.mzML',
-        ('MRFA', '2+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_zoom_01.mzML',
+        ('MRFA', '1+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_enhanced_01.mzML',
+        ('MRFA', '1+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_turbo_01.mzML',
+        ('MRFA', '1+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_1%2B_collision_energy_ramp_zoom_01.mzML',
+        ('MRFA', '2+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_zoom_01.mzML',
         ('MRFA', '2+', 'Zoom', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_zoom_iso_2.mzML',
         ('MRFA', '2+', 'Zoom', 'Iso 3', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_zoom_iso_3.mzML',
-        ('MRFA', '2+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_turbo_01.mzML',
+        ('MRFA', '2+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_turbo_01.mzML',
         ('MRFA', '2+', 'Turbo', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_turbo_iso_2.mzML',
         ('MRFA', '2+', 'Turbo', 'Iso 3', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_turbo_iso_3.mzML',
-        ('MRFA', '2+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_normal_01.mzML',
+        ('MRFA', '2+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_normal_01.mzML',
         ('MRFA', '2+', 'Normal', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_normal_iso_2.mzML',
         ('MRFA', '2+', 'Normal', 'Iso 3', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_normal_iso_3.mzML',
-        ('MRFA', '2+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_enhanced_01.mzML',
+        ('MRFA', '2+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/05Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_enhanced_01.mzML',
         ('MRFA', '2+', 'Enhanced', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_enhanced_iso_2.mzML',
         ('MRFA', '2+', 'Enhanced', 'Iso 3', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/MRFA/12Mar2024_MJ_MRFA_2%2B_collision_energy_ramp_enhanced_iso_3.mzML',
 
-        ('Bradykinin', '2+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_enhanced.mzML',
-        ('Bradykinin', '2+', 'Enhanced', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_enhanced_defined.mzML',
-        ('Bradykinin', '2+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_turbo.mzML',
-        ('Bradykinin', '2+', 'Turbo', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_turbo_defined.mzML',
-        ('Bradykinin', '2+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_zoom.mzML',
-        ('Bradykinin', '2+', 'Zoom', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_zoom_defined.mzML',
-        ('Bradykinin', '2+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_normal_01.mzML',
-        ('Bradykinin', '2+', 'Normal', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_normal_defined.mzML',
-        ('Bradykinin', '3+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_enhanced.mzML',
-        ('Bradykinin', '3+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_normal.mzML',
-        ('Bradykinin', '3+', 'Normal', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_normal_defined.mzML',
-        ('Bradykinin', '3+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_turbo.mzML',
-        ('Bradykinin', '3+', 'Turbo', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_turbo_defined.mzML',
-        ('Bradykinin', '3+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_zoom.mzML',
-        ('Bradykinin', '3+', 'Zoom', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_zoom_defined.mzML',
-        ('Bradykinin', '3+', 'Enhanced', 'Iso 1', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_enhanced_defined.mzML', 
+        ('Bradykinin', '2+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_enhanced.mzML',
+        ('Bradykinin', '2+', 'Enhanced', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_enhanced_defined.mzML',
+        ('Bradykinin', '2+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_turbo.mzML',
+        ('Bradykinin', '2+', 'Turbo', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_turbo_defined.mzML',
+        ('Bradykinin', '2+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_zoom.mzML',
+        ('Bradykinin', '2+', 'Zoom', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_zoom_defined.mzML',
+        ('Bradykinin', '2+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_normal_01.mzML',
+        ('Bradykinin', '2+', 'Normal', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_2%2B_collision_energy_ramp_normal_defined.mzML',
+        ('Bradykinin', '3+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_enhanced.mzML',
+        ('Bradykinin', '3+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_normal.mzML',
+        ('Bradykinin', '3+', 'Normal', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_normal_defined.mzML',
+        ('Bradykinin', '3+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_turbo.mzML',
+        ('Bradykinin', '3+', 'Turbo', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_turbo_defined.mzML',
+        ('Bradykinin', '3+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/13Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_zoom.mzML',
+        ('Bradykinin', '3+', 'Zoom', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_zoom_defined.mzML',
+        ('Bradykinin', '3+', 'Enhanced', 'Default', 'Defined'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Bradykinin/19Mar2024_MJ_bradykinin_3%2B_collision_energy_ramp_enhanced_defined.mzML', 
 
-        ('Substance_P', '2+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_enhanced.mzML',
-        ('Substance_P', '2+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_normal.mzML',
-        ('Substance_P', '2+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_turbo.mzML',
-        ('Substance_P', '2+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_zoom.mzML',
-        ('Substance_P', '3+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_enhanced.mzML',
-        ('Substance_P', '3+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_normal.mzML',
-        ('Substance_P', '3+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_turbo.mzML',
-        ('Substance_P', '3+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_zoom.mzML',
+        ('Substance_P', '2+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_enhanced.mzML',
+        ('Substance_P', '2+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_normal.mzML',
+        ('Substance_P', '2+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_turbo.mzML',
+        ('Substance_P', '2+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_2%2B_collision_energy_ramp_zoom.mzML',
+        ('Substance_P', '3+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_enhanced.mzML',
+        ('Substance_P', '3+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_normal.mzML',
+        ('Substance_P', '3+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_turbo.mzML',
+        ('Substance_P', '3+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/Substance_P/20Mar2024_MJ_subp_3%2B_collision_energy_ramp_zoom.mzML',
         
-        ('GRGDS', '1+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_enhanced.mzML',
         ('GRGDS', '1+', 'Enhanced', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_enhanced_02.mzML',
-        ('GRGDS', '1+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_normal.mzML',
         ('GRGDS', '1+', 'Normal', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_normal_02.mzML',
-        ('GRGDS', '1+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_turbo.mzML',
         ('GRGDS', '1+', 'Turbo', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_turbo_02.mzML',
-        ('GRGDS', '1+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_zoom.mzML',
         ('GRGDS', '1+', 'Zoom', 'Iso 2', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_1%2B_collision_energy_ramp_zoom_02.mzML',
-        ('GRGDS', '2+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_enhanced.mzML',
-        ('GRGDS', '2+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_normal.mzML',
-        ('GRGDS', '2+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_turbo.mzML',
-        ('GRGDS', '2+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_zoom.mzML',
+        ('GRGDS', '2+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_enhanced.mzML',
+        ('GRGDS', '2+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_normal.mzML',
+        ('GRGDS', '2+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_turbo.mzML',
+        ('GRGDS', '2+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/GRGDS/21Mar2024_MJ_GRGDS_2%2B_collision_energy_ramp_zoom.mzML',
 
-        ('SDGRG', '1+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_enhanced.mzML',
-        ('SDGRG', '1+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_normal.mzML',
-        ('SDGRG', '1+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_turbo.mzML',
-        ('SDGRG', '1+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_zoom.mzML',
-        ('SDGRG', '2+', 'Enhanced', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_2%2B_collision_energy_ramp_enhanced.mzML',
-        ('SDGRG', '2+', 'Normal', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_2%2B_collision_energy_ramp_normal.mzML',
-        ('SDGRG', '2+', 'Turbo', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_conc_2%2B_collision_energy_ramp_turbo.mzML',
-        ('SDGRG', '2+', 'Zoom', 'Iso 1', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_conc_2%2B_collision_energy_ramp_zoom.mzML',
+        ('SDGRG', '1+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_enhanced.mzML',
+        ('SDGRG', '1+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_normal.mzML',
+        ('SDGRG', '1+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_turbo.mzML',
+        ('SDGRG', '1+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_1%2B_collision_energy_ramp_zoom.mzML',
+        ('SDGRG', '2+', 'Enhanced', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_2%2B_collision_energy_ramp_enhanced.mzML',
+        ('SDGRG', '2+', 'Normal', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_2%2B_collision_energy_ramp_normal.mzML',
+        ('SDGRG', '2+', 'Turbo', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_conc_2%2B_collision_energy_ramp_turbo.mzML',
+        ('SDGRG', '2+', 'Zoom', 'Default', 'Centre'): 'https://raw.githubusercontent.com/KSlater14/Interactive-Tandem-Mass-Spectrometry-App-/main/Data/SDGRG/21Mar2024_MJ_SDGRG_conc_2%2B_collision_energy_ramp_zoom.mzML',
 
     }
 
-    if isolation is not None and (peptide == "Bradykinin"):
-        # Bradykinin has different isolation, exception to other peptides 
-        selected_file_url = file_map.get((peptide, charge_state, resolution, energy_ramp, isolation))
-    else: 
-        # Use default for other peptides 
-        selected_file_url = file_map.get((peptide, charge_state, resolution, energy_ramp, "Centre"))
+    selected_file_url = file_map.get((peptide, charge_state, resolution, energy_ramp, "Centre"))
 
     if selected_file_url:
         file_response = requests.get(selected_file_url)
@@ -313,37 +304,37 @@ peptide_options = {
             "1+": ["Turbo", "Enhanced", "Zoom"],
             "2+": ["Turbo", "Normal", "Enhanced", "Zoom"]
         },
-        "energy_ramps": {
-            "1+": ["Iso 1"],
-            "2+": ["Iso 1", "Iso 2", "Iso 3"]
+        "isolation": {
+            "1+": ["Default"],
+            "2+": ["Default", "Iso 2", "Iso 3"]
         }
     },
     "GRGDS": {
         "sequence": "GRGDS",
         "charge_states": ["1+", "2+"],
         "resolutions": ["Turbo", "Normal", "Enhanced", "Zoom"],
-        "energy_ramps": {
-            "1+": ["Iso 1", "Iso 2"],
-            "2+": ["Iso 1"]
+        "isolation": {
+            "1+": ["Default"],
+            "2+": ["Default"]
         }
     },
     "SDGRG": {
         "sequence": "SDGRG",
         "charge_states": ["1+", "2+"],
         "resolutions": ["Turbo", "Normal", "Enhanced", "Zoom"],
-        "energy_ramps": ["Iso 1"]
+        "isolation": ["Default"]
     },
     "Bradykinin": {
         "sequence": "RPPGFSPFR",
         "charge_states": ["2+", "3+"],
         "resolutions": ["Turbo", "Normal", "Enhanced", "Zoom"],
-        "energy_ramps": ["Iso 1"]
+        "isolation": ["Default"]
     },
     "Substance_P": {
         "sequence": "RPKPQQFFGLamM",
         "charge_states": ["2+", "3+"],
         "resolutions": ["Turbo", "Normal", "Enhanced", "Zoom"],
-        "energy_ramps": ["Iso 1"]
+        "isolation": ["Default"]
     }
 }
 
@@ -386,28 +377,20 @@ selected_resolution = st.sidebar.selectbox(
     get_resolutions(selected_peptide, selected_charge_state),
     help="Available mass analyser resolutions. Turbo = 125000 Da/sec (FWHM ⩽3 Th), Normal = 16666 Da/sec (FWHM ⩽0.7 Th), Enhanced = 5000 Da/sec (FWHM ⩽0.45 Th), Zoom = 1111 Da/sec (FWHM ⩽0.3 Th)")
 
-def get_energy_ramp_options(selected_peptide, selected_charge_state):
-    if selected_peptide in peptide_options and selected_charge_state in peptide_options[selected_peptide]["energy_ramps"]:
-        return peptide_options[selected_peptide]["energy_ramps"][selected_charge_state]
+def get_isolation_options(selected_peptide, selected_charge_state):
+    if selected_peptide in peptide_options and selected_charge_state in peptide_options[selected_peptide]["isolation"]:
+        return peptide_options[selected_peptide]["isolation"][selected_charge_state]
     else:
-        return ["Iso 1"]  # Default option if no valid options are found
+        return ["Default"]  # Default option if no valid options are found
 
 # Selectbox for choosing energy collision ramp
-selected_energy_ramp_options = get_energy_ramp_options(selected_peptide, selected_charge_state)
-if selected_energy_ramp_options:
-    selected_energy_ramp = st.sidebar.selectbox("Select Energy Collision Ramp", selected_energy_ramp_options)
-else:
-    selected_energy_ramp = None
-
-# Show isolation selectbox options if Bradykinin is selected
-if use_predefined_data and selected_peptide == "Bradykinin":
-    isolation_options = ["Centre", "Defined"]
-    selected_isolation = st.sidebar.selectbox("Select Isolation", isolation_options)
+selected_isolation_options = get_isolation_options(selected_peptide, selected_charge_state)
+if selected_isolation_options:
+    selected_isolation = st.sidebar.selectbox("Select Isolation Parameters", selected_isolation_options)
 else:
     selected_isolation = None
 
-
-    ## TAB LAYOUT ##
+## TAB LAYOUT ##
 
 # Creates tabs in the Streamlit app for displaying the spectrum and instructions 
 spectrum_tab, instructions_tab = st.tabs(["Spectrum", "Instructions"])
@@ -483,7 +466,7 @@ if use_predefined_data:
         selected_peptide, 
         selected_charge_state, 
         selected_resolution, 
-        selected_energy_ramp, 
+        selected_isolation, 
         isolation=None)
 else:
     # Allows user to upload their own mzML file

@@ -198,7 +198,7 @@ def plot_fragments(fragments, sequence):
             x=[mz + offset], 
             y=[ion_label], 
             text=[sequence[:pep_seq]], 
-            text_font_size="5pt", 
+            text_font_size="8pt", 
             text_align="left", 
             text_baseline="middle"
         )
