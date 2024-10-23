@@ -598,7 +598,7 @@ with spectrum_tab:
                         # Annotate the spectrum with theoretical fragments
                         ions_data = {
                             'x': [frag['m/z'] for frag in fragments],
-                            'y': [selected_scan['intensity array'][np.argmin(np.abs(selected_scan['m/z array'] - frag['peak_mass']))] * 1.02 for frag in fragments],
+                            'y': [selected_scan['intensity array'][np.argmin(np.abs(selected_scan['m/z array'] - frag['m/z']))] * 1.02 for frag in fragments],
                             'ion_type': [frag['ion'] for frag in fragments]
                         }
                         ions_source = ColumnDataSource(data=ions_data)
