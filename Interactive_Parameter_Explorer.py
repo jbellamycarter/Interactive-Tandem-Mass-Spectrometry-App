@@ -532,7 +532,7 @@ with spectrum_tab:
                 value=2, 
                 help="Label peaks with intensity above threshold% of maximum.")
             labels_on = st.checkbox("Show m/z labels", help="Display all peak labels on plot.", value=True)
-            label_ions = st.checkbox("Annotate Fragments", help="Display all fragment labels on plot", value=False)
+            label_ions = st.checkbox("Annotate Fragments", help="Display all fragment labels on plot", value=False, disabled=not labels_on)
             
             # Plot spectrum function
             def plot_spectrum(selected_scan, labels_on, label_ions, selected_peptide):
@@ -598,7 +598,7 @@ with spectrum_tab:
                         # Annotate the spectrum with theoretical fragments
                         ions_data = {
                             'x': [frag['m/z'] for frag in fragments],
-                            'y': [selected_scan['intensity array'][np.argmin(np.abs(selected_scan['m/z array'] - frag['m/z']))] * 1.02 for frag in fragments],
+                            'y': [selected_scan['intensity array'][np.argmin(np.abs(selected_scan['m/z array'] - frag['peak_mass']))] * 1.02 for frag in fragments],
                             'ion_type': [frag['ion'] for frag in fragments]
                         }
                         ions_source = ColumnDataSource(data=ions_data)
