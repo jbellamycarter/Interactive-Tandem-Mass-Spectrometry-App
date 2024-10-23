@@ -105,7 +105,7 @@ def get_fragments(sequence, selected_charge_state, peaks_data, isolation_window,
             ion_label = "M" + loss + "+"*charge
 
             if is_in_peaks_data(_mass):
-                fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M", 'start': _start, 'end': _end})
+                fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M", 'start': 0, 'end': pep_length})
                 print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
     
     return fragments
