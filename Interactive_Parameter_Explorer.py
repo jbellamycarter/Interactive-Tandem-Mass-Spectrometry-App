@@ -132,8 +132,13 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
     }
 
     def is_in_peaks_data(mass):
-        tolerance = 0.2 
-        return any(abs(mass - peak) <= tolerance for peak in peaks_data)
+        tolerance = 0.2
+
+        _idx = np.argmin(np.abs(np.array(peaks_data) - mass))[0]
+        if _idx:
+            return peaks_data[_idx]
+        else:
+            return False
 
     # Iterate over each position in peptide sequence for fragment generation 
     for pos in range(1, pep_length):
@@ -156,7 +161,7 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
 
                     # Check if calculated mass is close to any observed peaks
                     if is_in_peaks_data(_mass):
-                            fragments.append({'sequence': seq, 'ion': ion_label, 'm/z': _mass, 'type': ion_type})
+                            fragments.append({'sequence': seq, 'ion': ion_label, 'm/z': _mass, 'type': ion_type, 'peak_mass': is_in_peaks_data(_mass)})
                             print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
 
     # Handle precursor ion annotation
@@ -170,7 +175,7 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
             ion_label = "M" + loss + "+"*charge
 
             if is_in_peaks_data(_mass):
-                    fragments.append({'sequence': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M"})
+                    fragments.append({'sequence': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M", 'peak_mass': is_in_peaks_data(_mass)})
                     print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
         
     return fragments
@@ -554,7 +559,7 @@ with spectrum_tab:
                 _spectrum_plot.line(selected_scan['m/z array'], selected_scan['intensity array'], line_width=1.5, color='black')
 
                 # Peak detection and centroid calculation
-                _peaks, _properties = peak_detection(selected_scan, threshold=5, centroid=False)
+                _peaks, _properties = peak_detection(selected_scan, threshold=label_threshold, centroid=False)
                 _peak_centroids = get_centroid(selected_scan, _peaks, _properties)
 
                 # Create ColumnDataSource for peaks
