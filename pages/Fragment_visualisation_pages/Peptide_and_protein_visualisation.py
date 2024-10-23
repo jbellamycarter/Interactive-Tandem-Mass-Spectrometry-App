@@ -39,9 +39,11 @@ def show():
     st.markdown("Explore the 3D protein structure of Bradykinin as a peptide and the full protein structure of Ubiquitin.") 
     st.write("With structures directly taken from RCSB Protein Data Bank to provide a visual image of both a peptide structure and a protein structure.")
 
-#     peptide_options = {"Bradykinin", "Ubiquitin"}
-#     selected_peptide = st.sidebar.selectbox("Select Peptide", peptide_options)
+    peptide_options = {'Bradykinin':'6F3V', 'Ubiquitin':'1UBQ', 'Custom': ''}
+    selected_peptide = st.sidebar.selectbox("Select Peptide", peptide_options.keys())
 
+    #if selected_peptide is "Custom":
+    rcsb_id = st.sidebar.text_input("RCSB PDB ID", max_chars=4)
 #     # Sidebar to alllow user to select style of visualisation 
 #     display_mode = st.sidebar.selectbox("Select the style of visualisation:",["Cartoon", "Spacefill"]
 #     )
@@ -59,7 +61,7 @@ def show():
 #     JSmol_viewer = generate_jsmol_html(pdb_id, display_mode)
 #     # Embedding of the JSmol viewer into Streamlit app 
 #     st.components.v1.html(JSmol_viewer, height=650)
-    st_molstar_rcsb('1UBQ', height="640px")
+    st_molstar_rcsb(rcsb_id, height="500px")
 
 if __name__ == "__main__":
     show()
