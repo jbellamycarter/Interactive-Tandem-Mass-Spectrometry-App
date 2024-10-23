@@ -134,9 +134,9 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
     def is_in_peaks_data(mass):
         tolerance = 0.2
 
-        _idx = np.argmin(np.abs(np.array(peaks_data) - mass))[0]
-        if _idx:
-            return peaks_data[_idx]
+        _idx = np.argmin(np.abs(np.array(peaks_data) - mass))
+        if _idx.any():
+            return peaks_data[_idx[0]]
         else:
             return False
 
