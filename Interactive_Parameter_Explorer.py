@@ -133,12 +133,12 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
 
     def is_in_peaks_data(mass):
         tolerance = 0.2
-
-        _idx = np.argmin(np.abs(np.array(peaks_data) - mass))
+        _diffs = np.abs(np.array(peaks_data) - mass)
+        _idx = np.argmin(_diffs)
         if _idx.any():
-            return peaks_data[_idx]
-        else:
-            return False
+            if _diffs[_idx] <= tolerance:
+                return peaks_data[_idx]
+        return False
 
     # Iterate over each position in peptide sequence for fragment generation 
     for pos in range(1, pep_length):
