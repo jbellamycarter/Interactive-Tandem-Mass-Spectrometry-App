@@ -78,9 +78,14 @@ def get_fragments(sequence, selected_charge_state, peaks_data, isolation_window,
     for pos in range(1, pep_length):
         for ion_type in ion_types:
             if ion_type[0] in ('a', 'b', 'c'):
-                seq = ''.join(_sequence[:pos])
+                _start = 0
+                _end = pos
+                
             elif ion_type[0] in ('x', 'y', 'z'):
-                seq = ''.join(_sequence[-pos:])
+                _start = pep_length - pos
+                _end = pep_length
+            
+            seq = ''.join(_sequence[_start:_end])
             
             for charge in range(1, selected_charge_state + 1):
                 for loss, mass_diff in neutral_losses.items():
@@ -88,7 +93,7 @@ def get_fragments(sequence, selected_charge_state, peaks_data, isolation_window,
                     ion_label = '[' + ion_type + str(pos) + loss + ']' + '+'*charge
 
                     if is_in_peaks_data(_mass):
-                        fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': ion_type, 'start': _mass - 0.5, 'end': _mass + 0.5})
+                        fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': ion_type, 'start': _start, 'end': _end})
                         print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
 
 
@@ -100,7 +105,7 @@ def get_fragments(sequence, selected_charge_state, peaks_data, isolation_window,
             ion_label = "M" + loss + "+"*charge
 
             if is_in_peaks_data(_mass):
-                fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M", 'start': _mass - 0.5, 'end': _mass + 0.5})
+                fragments.append({'seq': seq, 'ion': ion_label, 'm/z': _mass, 'type': "M", 'start': _start, 'end': _end})
                 print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
     
     return fragments
@@ -140,8 +145,8 @@ def plot_fragments(fragments, sequence):
     ion_types = [fragment['type'] for fragment in fragments]
     pep_sequence = [len(fragment['seq']) for fragment in fragments]
 
-    ion_start = [fragment.get('start', fragment['m/z'] - 0.5) for fragment in fragments]
-    ion_end = [fragment.get('end', fragment['m/z'] + 0.5) for fragment in fragments]
+    ion_start = [fragment['m/z'] - 0.5 for fragment in fragments]
+    ion_end = [fragment['m/z'] + 0.5 for fragment in fragments]
 
     # Define colors for different ion types
     _colours = {'b': 'blue', 'y': 'red', 'M': 'orange', '': 'pink'}
@@ -241,9 +246,49 @@ def plot_fragments(fragments, sequence):
  
     st.bokeh_chart(_plot, use_container_width=True)
 
-fragment_mass_tab, instructions_tab = st.tabs(["Fragment Masses", "Instructions"])
+def plot_fragment_coverage(fragments, sequence):
+    mz_values = [fragment['m/z'] for fragment in fragments]
+    ion_seq = [fragment['seq'] for fragment in fragments]
+    ion_labels = [fragment['ion'] for fragment in fragments]
+    ion_types = [fragment['type'] for fragment in fragments]
+    ion_start = [fragment['start'] - 0.5 for fragment in fragments]
+    ion_end = [fragment['end'] - 0.5 for fragment in fragments]
+
+    # Define colors for different ion types
+    colors = {'b': 'blue', 'y': 'red', 'M': 'yellow', '': 'black'}
+    color_values = [colors.get(ion_type, 'black') for ion_type in ion_types]
+
+    # Create a ColumnDataSource from the fragment data
+    fragment_data = ColumnDataSource(data=dict(
+        mz_values=mz_values,
+        ion_seq=ion_seq,
+        ion_start=ion_start,
+        ion_end=ion_end,
+        ion_labels=ion_labels,
+        ion_types=ion_types,
+        color_values=color_values  # Add color values to the data source
+    ))
+
+    p = figure(y_range=fragment_data.data['ion_labels'])
+    p.hbar(y='ion_labels', left='ion_start', right='ion_end', height=0.6, color='color_values', source=fragment_data)
+
+    p.xaxis.ticker = list(range(0, len(sequence)))
+    p.xaxis.major_label_overrides = dict(zip(range(len(sequence)), list(sequence)))
+
+    hover = HoverTool(tooltips=[
+        ("m/z", "@mz_values"),
+        ("Ion", "@ion_labels"),
+        ("Type", "@ion_types"),
+        ("Sequence", "@ion_seq")
+    ])
+    p.add_tools(hover)
+
+    st.bokeh_chart(p, use_container_width=True)
+
+fragment_mass_tab, fragment_coverage_tab, instructions_tab = st.tabs(["Fragment Masses", "Fragment Coverage", "Instructions"])
 
 with fragment_mass_tab:
+    st.header("Fragment m/z visualisation")
     peptide_options = {
         'MRFA': 'MRFA',
         'Bradykinin': 'RPPGFSPFR',
@@ -290,6 +335,11 @@ with fragment_mass_tab:
         df_fragments = pd.DataFrame(fragments)
         # Display the fragments in a table, with columns as specified 
         st.table(df_fragments[['m/z', 'type', 'ion']])
+
+with fragment_coverage_tab:
+    st.header("Fragment coverage visualisation")
+
+    plot_fragment_coverage(fragments, peptide_sequence)
 
 with instructions_tab:
     st.header("Instructions")
