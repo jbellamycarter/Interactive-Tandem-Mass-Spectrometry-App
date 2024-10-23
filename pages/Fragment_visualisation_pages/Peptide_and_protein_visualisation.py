@@ -59,7 +59,7 @@ def show():
 #     JSmol_viewer = generate_jsmol_html(pdb_id, display_mode)
 #     # Embedding of the JSmol viewer into Streamlit app 
 #     st.components.v1.html(JSmol_viewer, height=650)
-    st_molstar_rcsb('1UBQ')
+    st_molstar_rcsb('1UBQ', height="640px")
 
 if __name__ == "__main__":
     show()
