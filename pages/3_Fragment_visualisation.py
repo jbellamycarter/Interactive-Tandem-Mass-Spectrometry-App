@@ -269,7 +269,9 @@ def plot_fragment_coverage(fragments, sequence):
         color_values=color_values  # Add color values to the data source
     ))
 
-    p = figure(y_range=fragment_data.data['ion_labels'])
+    p = figure(x_axis_label='Residue',
+               y_axis_label='Ion',
+               y_range=fragment_data.data['ion_labels'])
     p.hbar(y='ion_labels', left='ion_start', right='ion_end', height=0.6, color='color_values', source=fragment_data)
 
     p.xaxis.ticker = list(range(0, len(sequence)))
