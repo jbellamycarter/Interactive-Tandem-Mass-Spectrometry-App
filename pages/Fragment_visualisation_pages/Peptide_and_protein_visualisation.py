@@ -43,7 +43,7 @@ def show():
     selected_peptide = st.sidebar.selectbox("Select Peptide", peptide_options.keys())
 
     #if selected_peptide is "Custom":
-    rcsb_id = st.sidebar.text_input("RCSB PDB ID", max_chars=4)
+    rcsb_id = st.sidebar.text_input("RCSB PDB ID", value=peptide_options[selected_peptide], max_chars=4)
 #     # Sidebar to alllow user to select style of visualisation 
 #     display_mode = st.sidebar.selectbox("Select the style of visualisation:",["Cartoon", "Spacefill"]
 #     )
