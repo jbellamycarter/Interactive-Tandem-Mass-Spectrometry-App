@@ -10,7 +10,7 @@ st.title("Interactive Peptide MS Explorer")
 "This is an interactive application developed for teaching proteomics at Loughborough University by [Dr Jedd Bellamy-Carter](https://www.lboro.ac.uk/departments/chemistry/staff/jedd-bellamycarter)."
 
 """
-The sidebar on the left has several different interactive pages to explore different aspects of peptide mass spectrometry. These contain real peptide MS data and simulate a simplified instrument interface.
+The sidebar on the left has several different interactive pages to explore different aspects of peptide mass spectrometry. These contain real peptide MS data and simulate a simplified instrument interface. All data given were collected on a Thermo LTQ mass spectrometer.
 """
 
 """
