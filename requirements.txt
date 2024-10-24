@@ -8,6 +8,5 @@ lxml
 sqlalchemy
 pynumpress
 scikit-learn
-streamlit_option_menu
 streamlit-molstar
 requests
