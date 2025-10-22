@@ -11,6 +11,7 @@ import requests
 import io
 from bokeh.models import HoverTool, ColumnDataSource, LabelSet
 from bokeh.plotting import figure
+from streamlit_bokeh import streamlit_bokeh
 from pyteomics import mzml, mass, parser
 from scipy import signal
 
@@ -196,7 +197,7 @@ def plot_spectrum(spectrum, show_labels, label_ions):
     hover_tool = HoverTool(tooltips=TOOLTIPS, renderers=[r])
     _plot.add_tools(hover_tool)
     # Displays the plot in the Streamlit app with width that adapts to the container 
-    st.bokeh_chart(_plot, use_container_width=True)
+    streamlit_bokeh(_plot, use_container_width=True)
 
 # Streamlit layout, creation of tabs 
 Spectrum_tab, Instruction_tab = st.tabs(["Spectrum", "Instructions"])
