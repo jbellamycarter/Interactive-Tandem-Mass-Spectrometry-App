@@ -12,6 +12,7 @@ import os
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure 
 from bokeh.palettes import Spectral11
+from streamlit_bokeh import streamlit_bokeh
 from pyteomics import mzml 
 
 
@@ -159,5 +160,5 @@ with Isolation_tab:
         format="%0.1f")
 
     bokeh_figure = plot_spectrum(MRFA_file_path, isolation_centre, isolation_width)
-    st.bokeh_chart(bokeh_figure)
+    streamlit_bokeh(bokeh_figure)
 
