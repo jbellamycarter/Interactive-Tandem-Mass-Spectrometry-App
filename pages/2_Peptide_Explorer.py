@@ -151,8 +151,16 @@ def plot_spectrum(spectrum, show_labels, label_ions):
         ("centroid", "@cent{0.00}")
     ]
 
-    _plot = figure(title="", x_axis_label="m/z", y_axis_label="Intensity", tooltips=None,
-               tools='pan,box_zoom,xbox_zoom,reset,save', active_drag='xbox_zoom')
+    _plot = figure(
+                    title="", 
+                    x_axis_label="m/z", 
+                    y_axis_label="Intensity", 
+                    tooltips=None,
+                    tools='pan,box_zoom,xbox_zoom,reset,save', 
+                    active_drag='xbox_zoom',
+                    height=250,
+                    height_policy='fixed'
+                )
 
     _plot.line(mz_values, intensity_values, line_width=1.5, color='black')
     r = _plot.circle('x', 'y', size=5, source=source, color='red')
