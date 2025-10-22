@@ -94,7 +94,10 @@ def plot_spectrum(MRFA_file, isolation_width, isolation_centre):
                y_axis_label='Intensity',
                x_range=(1000,1300),
                tools='pan,box_zoom,xbox_zoom,reset,save',
-               active_drag='xbox_zoom')
+               active_drag='xbox_zoom',
+               height=250,
+               height_policy='fixed'
+                  )
     
     _plot.line('_mzs', 'intensities', 
                source=source_original, legend_label='Original Intensity', color=Spectral11[0], alpha=0.3, line_width=2)
