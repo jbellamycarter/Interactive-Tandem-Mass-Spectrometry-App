@@ -555,7 +555,7 @@ with spectrum_tab:
                     x_axis_label='m/z',
                     tools='pan,box_zoom,xbox_zoom,wheel_zoom,reset,save',
                     active_drag='xbox_zoom',
-                    height=300,
+                    height=250,
                     height_policy='fixed'
                 )
                 # Format the y-axis and x-axis on the plot 
