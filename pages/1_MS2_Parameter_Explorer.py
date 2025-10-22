@@ -554,7 +554,8 @@ with spectrum_tab:
                     y_axis_label='intensity',
                     x_axis_label='m/z',
                     tools='pan,box_zoom,xbox_zoom,wheel_zoom,reset,save',
-                    active_drag='xbox_zoom'
+                    active_drag='xbox_zoom',
+                    height_policy='fit'
                 )
                 # Format the y-axis and x-axis on the plot 
                 _spectrum_plot.left[0].formatter.use_scientific = True
