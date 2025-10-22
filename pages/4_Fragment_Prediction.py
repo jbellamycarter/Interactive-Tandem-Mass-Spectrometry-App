@@ -11,6 +11,7 @@ import io
 from bokeh.models import ColumnDataSource, LabelSet, HoverTool, LegendItem
 from bokeh.plotting import figure
 from bokeh.palettes import Category10
+from streamlit_bokeh import streamlit_bokeh
 from pyteomics import mzml, parser, mass
 from scipy import signal
 
@@ -242,12 +243,12 @@ with fragment_mass_tab:
     
     # Pass both fragments and peptide_sequence to plot_fragments
     _frag_plot = plot_fragments(fragments, peptide_sequence)
-    st.bokeh_chart(_frag_plot, use_container_width=True)
+    streamlit_bokeh(_frag_plot, use_container_width=True)
     
     # Convert fragments data to a DataFrame for display 
     df_fragments = pd.DataFrame(fragments)
     # Display the fragments in a table, with columns as specified 
-    st.dataframe(df_fragments[['m/z', 'type', 'ion']])
+    st.dataframe(df_fragments[['m/z', 'type', 'ion', 'seq']])
 
 with fragment_coverage_tab:
     st.header("Fragment coverage visualisation")
