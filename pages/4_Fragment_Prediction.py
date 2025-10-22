@@ -118,7 +118,9 @@ def plot_fragments(fragments, sequence):
         y_axis_label='Ion',
         y_range=fragment_data.data['ion_labels'],
         tools='pan,box_zoom,xbox_zoom,reset,save',
-        active_drag='xbox_zoom'
+        active_drag='xbox_zoom',
+        height=250,
+        height_policy='fixed'
     )
 
     frag_scatter = _plot.scatter(
