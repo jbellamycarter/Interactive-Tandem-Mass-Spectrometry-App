@@ -11,7 +11,7 @@ import io
 from bokeh.models import ColumnDataSource, LabelSet, HoverTool, LegendItem
 from bokeh.plotting import figure
 from bokeh.palettes import Category10
-from streamlit-bokeh import streamlit_bokeh
+from streamlit_bokeh import streamlit_bokeh
 from pyteomics import mzml, parser, mass
 from scipy import signal
 
