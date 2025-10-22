@@ -9,4 +9,5 @@ sqlalchemy
 pynumpress
 scikit-learn
 streamlit-molstar
+streamlit-bokeh
 requests
