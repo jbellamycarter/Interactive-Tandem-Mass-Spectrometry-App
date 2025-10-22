@@ -11,6 +11,7 @@ import requests
 import io
 from bokeh.models import ColumnDataSource, LabelSet, HoverTool, Range1d
 from bokeh.plotting import figure
+from streamlit_bokeh import streamlit_bokeh
 from pyteomics import mzml, mass, parser
 from scipy import signal
 
@@ -631,4 +632,4 @@ with spectrum_tab:
     with scol2:
         if reader is not None:
             _spectrum_plot = plot_spectrum(selected_scan, labels_on, label_ions, selected_peptide)
-            st.bokeh_chart(_spectrum_plot, use_container_width=True)
+            streamlit_bokeh(_spectrum_plot, use_container_width=True)
