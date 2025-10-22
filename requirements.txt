@@ -3,11 +3,10 @@ numpy==1.25.0
 pandas
 scipy
 pyteomics
-bokeh==3.7.0
+bokeh==2.4.3
 lxml
 sqlalchemy
 pynumpress
 scikit-learn
 streamlit-molstar
-streamlit-bokeh
 requests
