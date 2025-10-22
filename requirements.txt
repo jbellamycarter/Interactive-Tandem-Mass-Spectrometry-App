@@ -3,7 +3,7 @@ numpy==1.25.0
 pandas
 scipy
 pyteomics
-bokeh
+bokeh==3.8.0
 lxml
 sqlalchemy
 pynumpress
