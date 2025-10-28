@@ -250,7 +250,7 @@ with fragment_mass_tab:
     # Convert fragments data to a DataFrame for display 
     df_fragments = pd.DataFrame(fragments)
     # Display the fragments in a table, with columns as specified 
-    st.dataframe(df_fragments[['m/z', 'type', 'ion', 'seq']])
+    st.dataframe(df_fragments[['m/z', 'type', 'ion', 'seq']], hide_index=True)
 
 with fragment_coverage_tab:
     st.header("Fragment coverage visualisation")
