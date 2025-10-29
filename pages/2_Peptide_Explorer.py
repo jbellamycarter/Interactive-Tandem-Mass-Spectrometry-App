@@ -62,7 +62,6 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
     _sequence = parser.parse(sequence) 
 
     pep_length = len(_sequence)
-    print(f"Length of Peptide: {pep_length}")
 
     neutral_losses = {
         '': 0, 
@@ -73,28 +72,6 @@ def get_fragments(sequence, selected_charge_state, peaks_data, ion_types=('b', '
     def is_in_peaks_data(mass):
         tolerance = 0.2 
         return any(abs(mass - peak) <= tolerance for peak in peaks_data)
-   
-    for pos in range(1, pep_length):
-        for ion_type in ion_types:
-       
-            if ion_type[0] in ('a', 'b', 'c'):
-                seq = ''.join(_sequence[:pos])
-            elif ion_type[0] in ('x', 'y', 'z'):
-                seq = ''.join(_sequence[-pos:])
-            
-         
-            for charge in range(1, selected_charge_state + 1):
-                for loss, mass_diff in neutral_losses.items():
-                    # Calculate fragment mass with potential neutral loss, need to account for charge state with losses 
-                    _mass = mass.fast_mass2(seq, ion_type=ion_type, charge=charge, aa_mass=aa_mass) + (mass_diff / charge)  
-
-                    # Determine ion label based on ion type and neutral loss
-                    ion_label = ion_type + str(pos) + loss + "+"*charge # adds charge to ion labels
-
-                    # Check if calculated mass is close to any observed peaks
-                    if is_in_peaks_data(_mass):
-                            fragments.append({'sequence': seq, 'ion': ion_label, 'm/z': _mass, 'type': ion_type})
-                            print(f"Annotated fragment: {ion_label}, m/z: {_mass}")
 
     # Precursor ion annotation
     for charge in range(1, selected_charge_state + 1):
@@ -136,7 +113,7 @@ def plot_spectrum(spectrum, show_labels, label_ions):
     mz_values = spectrum['m/z array']
     intensity_values = spectrum['intensity array']
 
-    _peaks, _properties = peak_detection(spectrum, threshold=5, centroid=False)
+    _peaks, _properties = peak_detection(spectrum, threshold=2, centroid=False)
     peak_centroids = get_centroid(spectrum, _peaks, _properties)
 
     source = ColumnDataSource(data=dict(
@@ -163,7 +140,7 @@ def plot_spectrum(spectrum, show_labels, label_ions):
                 )
 
     _plot.line(mz_values, intensity_values, line_width=1.5, color='black')
-    r = _plot.circle('x', 'y', size=5, source=source, color='red')
+    r = _plot.circle('x', 'y', size=5, source=source, color='skyblue', alpha=0.6)
 
     if show_labels:
         labels = LabelSet(x='x', 
@@ -268,21 +245,22 @@ peptide_options = {
     'SDGRG': {'sequence': 'SDGRG'}
 }
 
-selected_peptide = st.sidebar.selectbox("Select Peptide", 
-                                        list(peptide_options.keys()))
-show_labels = st.sidebar.checkbox("Show m/z Labels", value=False)
-label_ions = st.sidebar.checkbox("Annotate Fragments", value=False)
+
 
 # Main content for Spectrum tab 
 with Spectrum_tab:
     st.markdown("Explore a full MS scan for different peptides. Select instructions for help.")
+    selected_peptide = st.selectbox("Select Peptide", 
+                                        list(peptide_options.keys()))
+    show_labels = st.checkbox("Show m/z Labels", value=True)
+
     spectra = load_mzml_data(selected_peptide)
     if spectra is not None:
         # Get the first spectrum from the loaded data or None if no spectra 
         first_spectrum = next(spectra, None)  
         # Checks whether spectrum contains necessary data arrays 
         if first_spectrum and 'm/z array' in first_spectrum and 'intensity array' in first_spectrum:
-            plot_spectrum(first_spectrum, show_labels, label_ions)
+            plot_spectrum(first_spectrum, show_labels, False)
         else:
             st.error("The mzML data for the chosen peptide is not in the correct format.")
         
