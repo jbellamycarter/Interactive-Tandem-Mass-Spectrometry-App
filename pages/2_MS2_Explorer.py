@@ -474,9 +474,10 @@ with spectrum_tab:
                                         help = "Small selection of real peptides") 
 
         # Selectbox for choosing charge state 
-        selected_charge_state = st.selectbox(
+        selected_charge_state = st.pills(
             "Select Charge State", 
             get_options(selected_peptide, "charge_states"),
+            default = "2+",
             help = "Charge states of peptide with reasonable intensity after ESI.")
         
         #st.write("You have selected the ", selected_charge_state, "of", selected_peptide, ", this has a monoisotopic precursor m/z of ", "{:.2f}".format(mass.fast_mass2(peptide_options[selected_peptide]['sequence'], ion_type="M", charge=int(selected_charge_state[0]), aa_mass=aa_mass)))
