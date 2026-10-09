@@ -1,10 +1,10 @@
 streamlit
-numpy==1.25.0
+numpy
 psims
 pandas
 scipy
 pyteomics
-bokeh==3.7.0
+bokeh
 lxml
 sqlalchemy
 pynumpress
